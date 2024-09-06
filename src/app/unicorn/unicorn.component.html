@@ -1,0 +1,42 @@
+<h2>User Details</h2>
+
+<button class="add" (click)="openModal()">Add User</button>
+
+<div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span (click)="closeModal()" class="close">&times;</span>
+      <h3>Add New Unicorn</h3>
+      <form (ngSubmit)="addUnicorn()">
+        <label for="name">Name:</label>
+        <input [(ngModel)]="unicorn.name" name="name" required />
+        
+        <label for="age">Age:</label>
+        <input type="number" [(ngModel)]="unicorn.age" name="age" required />
+        
+        <label for="colour">Colour:</label>
+        <input [(ngModel)]="unicorn.colour" name="colour" required />
+        
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+  
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Colour</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let unicorn of unicorns">
+    <td>{{ unicorn._id }}</td>
+    <td>{{ unicorn.name }}</td>
+    <td>{{ unicorn.age }}</td>
+    <td>{{ unicorn.colour }}</td>
+    <td>
+      <button class="delete" (click)="deleteUnicorn(unicorn._id)">Delete</button>
+    </td>
+  </tr>
+</table>
